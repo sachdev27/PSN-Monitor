@@ -81,33 +81,55 @@ def fetch_psn_status():
     return None
 
 def check_psn_status(data):
-    """Parses PSN JSON data and extracts outage information."""
-    if not data:
-        logging.warning("⚠️ No PSN data received.")
+    """
+    Parses PSN JSON data and extracts outage information.
+    Filters for the country specified in config.json.
+    """
+    if not data or "countries" not in data:
+        logging.warning("⚠️ No PSN data received or missing 'countries' key.")
         return []
+
     logging.info("🔍 Checking PSN status for outages...")
+
     outages = []
-    region_name = data.get("regionName", "Unknown Region")
-    for status in data.get("status", []):
-        if status.get("statusType", "").lower() == "outage":
-            affected_devices = [device.get("deviceName", "Unknown Device") for device in status.get("devices", [])]
-            message = status.get("message", {}).get("messages", {}).get("en-US", "No message available")
-            start_time_utc, start_time_ist = format_time(status.get("startDate", "Unknown"))
-            outage_info = {
-                "region": region_name,
-                "statusId": status.get("statusId", "Unknown"),
-                "startDateUTC": start_time_utc,
-                "startDateIST": start_time_ist,
-                "affectedDevices": affected_devices,
-                "message": message
-            }
-            outages.append(outage_info)
-            logging.warning(f"🚨 Outage Detected: {outage_info}")
+    target_country = config.get("CountryName", "India")  # Fetch from config
+
+    for country in data["countries"]:
+        country_name = country.get("countryName", "Unknown")
+
+        # Filter only for the target country (India)
+        if country_name.lower() != target_country.lower():
+            continue  # Skip other countries
+
+        logging.info(f"🔎 Checking outages for {country_name}")
+
+        for status in country.get("status", []):
+            if status.get("statusType", "").lower() == "outage":
+                affected_devices = [device.get("deviceName", "Unknown Device") for device in status.get("devices", [])]
+                message = status.get("message", {}).get("messages", {}).get("en-GB", "No message available")
+                messageKey = status.get("message", {}).get("messageKey", {})
+                start_time_utc, start_time_ist = format_time(status.get("startDate", "Unknown"))
+
+                outage_info = {
+                    "country": country_name,
+                    "statusId": status.get("statusId", "Unknown"),
+                    "startDateUTC": start_time_utc,
+                    "startDateIST": start_time_ist,
+                    "affectedDevices": affected_devices,
+                    "affectedService": messageKey.split(".")[1] if messageKey else "",
+                    "message": message
+                }
+
+                outages.append(outage_info)
+                logging.warning(f"🚨 Outage Detected in {country_name}: {outage_info}")
+
     if outages:
-        logging.info(f"⚠️ {len(outages)} outage(s) found!")
+        logging.info(f"⚠️ {len(outages)} outage(s) found in {target_country}!")
     else:
-        logging.info("✅ No PSN outages detected.")
+        logging.info(f"✅ No PSN outages detected in {target_country}.")
+
     return outages
+
 
 def send_email_notification(subject, body):
     """

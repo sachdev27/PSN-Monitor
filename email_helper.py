@@ -19,9 +19,9 @@ def generate_alert_email_body(outages):
     for outage in outages:
         table_rows += f"""
             <tr>
-                <td style="border: 1px solid #333333; padding: 8px;"><strong>{outage['region']}</strong></td>
-                <td style="border: 1px solid #333333; padding: 8px;">{outage['startDateUTC']}</td>
+                <td style="border: 1px solid #333333; padding: 8px;"><strong>{outage['country']}</strong></td>
                 <td style="border: 1px solid #333333; padding: 8px;">{outage['startDateIST']}</td>
+                <td style="border: 1px solid #333333; padding: 8px;">{outage['affectedService']}</td>
                 <td style="border: 1px solid #333333; padding: 8px;">{', '.join(outage['affectedDevices'])}</td>
                 <td style="border: 1px solid #333333; padding: 8px; color: #D32F2F;">{outage['message']}</td>
             </tr>
@@ -129,8 +129,8 @@ def generate_alert_email_body(outages):
             <thead>
               <tr>
                 <th style="border: 1px solid #333333; padding: 8px; background-color: #212121;">Region</th>
-                <th style="border: 1px solid #333333; padding: 8px; background-color: #212121;">Start Time (UTC)</th>
                 <th style="border: 1px solid #333333; padding: 8px; background-color: #212121;">Start Time (IST)</th>
+                <th style="border: 1px solid #333333; padding: 8px; background-color: #212121;">Affected Service</th>
                 <th style="border: 1px solid #333333; padding: 8px; background-color: #212121;">Affected Devices</th>
                 <th style="border: 1px solid #333333; padding: 8px; background-color: #212121;">Status</th>
               </tr>
