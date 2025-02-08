@@ -1,0 +1,67 @@
+[
+    {
+        "region": "SCEE",
+        "statusId": "cce5fb35-ebad-4cde-84d9-d458e8f9cd21",
+        "startDate": "2025-02-08T00:00:24.435+00:00",
+        "affectedDevices": [
+            "Other",
+            "PS Vita",
+            "PlayStation 3",
+            "PlayStation 4",
+            "PlayStation 5",
+            "Web"
+        ],
+        "message": "You might have difficulty getting PlayStation\u00a0Video content. We're working to resolve the issue as soon as possible. Thank you for your patience."
+    },
+    {
+        "region": "SCEE",
+        "statusId": "3bbb0d97-695f-4366-b72d-3d4bbee7ac38",
+        "startDate": "2025-02-08T00:00:24.435+00:00",
+        "affectedDevices": [
+            "Other",
+            "PS Vita",
+            "PlayStation 3",
+            "PlayStation 4",
+            "PlayStation 5",
+            "Web"
+        ],
+        "message": "You might have difficulty launching games, apps, or network features. We're working to resolve the issue as soon as possible. Thank you for your patience."
+    },
+    {
+        "region": "SCEE",
+        "statusId": "3a7f5d7c-1e65-4eea-9526-26825221c9a9",
+        "startDate": "2025-02-08T00:00:24.435+00:00",
+        "affectedDevices": [
+            "Web"
+        ],
+        "message": "You might have difficulty getting products on PlayStation Direct. We're working to resolve the issue as soon as possible. Thank you for your patience."
+    },
+    {
+        "region": "SCEE",
+        "statusId": "80f4ca70-4e6f-4c62-9da6-902ef372efb7",
+        "startDate": "2025-02-08T00:00:24.435+00:00",
+        "affectedDevices": [
+            "Other",
+            "PS Vita",
+            "PlayStation 3",
+            "PlayStation 4",
+            "PlayStation 5",
+            "Web"
+        ],
+        "message": "You might have difficulty signing in or creating an account for PlayStation\u00a0Network. We're working to resolve the issue as soon as possible. Thank you for your patience."
+    },
+    {
+        "region": "SCEE",
+        "statusId": "341384a2-2fee-4ec4-b401-65d87cb4b1f6",
+        "startDate": "2025-02-08T00:00:24.435+00:00",
+        "affectedDevices": [
+            "Other",
+            "PS Vita",
+            "PlayStation 3",
+            "PlayStation 4",
+            "PlayStation 5",
+            "Web"
+        ],
+        "message": "You might have difficulty getting products on the PlayStation\u00a0Store. We're working to resolve the issue as soon as possible. Thank you for your patience."
+    }
+]

@@ -1,0 +1,13 @@
+{
+    "_comment_region": "For US Region use - SCEA // SCEE for ASIA",
+    "_comment_app_passcode": "Google has stopped supporting passowrd so now we have to make app passcode 16 digit with 2 Factor Auth on - https://support.google.com/accounts/answer/185833?hl=en",
+    "PSN_API_URL": "https://status.playstation.com/data/statuses/region/SCEE.json",
+    "SMTP_SERVER": "smtp.gmail.com",
+    "SMTP_PORT": 587,
+    "EMAIL_SENDER": "xxxx@gmail.com",
+    "EMAIL_PASSWORD": "xxxx",
+    "EMAIL_RECEIVER": "xxxx@gmail.com",
+    "RETRY_DELAY": 10,
+    "MAX_RETRIES": 5,
+    "CHECK_INTERVAL": 3600
+}
