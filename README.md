@@ -83,7 +83,8 @@ sudo systemctl enable psn_monitor
 - Includes **affected regions, devices, and downtime details**.
 
 ✅ **Example Email Alert:**
-![Email Screenshot](https://via.placeholder.com/600x300?text=PSN+Outage+Alert)
+Email Screenshot   <img width="1416" alt="image" src="https://github.com/user-attachments/assets/d47d60b8-469f-46e5-87cc-f4bc891aa1f6" />
+
 
 ---
 
