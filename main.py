@@ -142,22 +142,28 @@ def send_resolved_email():
 
 def monitor_psn():
     """
-    Continuously monitors PlayStation Network status and sends alerts for outages.
-    A resolved email is sent only once when an outage that was previously active has been resolved.
+    Monitors PlayStation Network status **every hour**.
+    - Sends an alert **only if PSN goes down**.
+    - Sends a resolved email **when PSN recovers**.
+    - Avoids duplicate emails for the same issue.
     """
-    logging.info("🔍 PSN Monitoring Started...")
-    outage_active = False  # Flag to track if an outage was previously detected
+    logging.info("🔍 PSN Monitoring Started... Checking every hour.")
+    outage_active = False  # Flag to track active outage
+
     while True:
         psn_data = fetch_psn_status()
         outage_reports = check_psn_status(psn_data)
-        if outage_reports:
+
+        if outage_reports and not outage_active:
             send_outage_email(outage_reports)
-            outage_active = True
-        else:
-            if outage_active:
-                send_resolved_email()
-                outage_active = False
-        time.sleep(CHECK_INTERVAL)
+            outage_active = True  # Mark outage as active
+
+        elif not outage_reports and outage_active:
+            send_resolved_email()
+            outage_active = False  # Mark system as restored
+
+        logging.info(f"🕒 Next check in {CHECK_INTERVAL} secs...")
+        time.sleep(CHECK_INTERVAL)  # Wait for 1 hour before checking again
 
 if __name__ == "__main__":
     monitor_psn()
